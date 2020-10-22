@@ -25,9 +25,9 @@ app.get("/api/workouts", (req, res) => {
 
     }).then(
         (workouts) => {
-                console.log(workouts);
+            console.log(workouts);
             res.json(workouts)
-        
+
         }).catch((err) => {
             res.json(err)
         });
@@ -38,35 +38,34 @@ app.post("/api/workouts", (req, res) => {
     Workout.create({
 
     }).then(
-        (err, workouts) => {
-            if (err)
-                console.log(err);
+        (workouts) => {
+
             res.json(workouts)
         });
 });
 // PUT /api/workouts/:id
 app.put("/api/workouts/:id", (req, res) => {
-// console.log(req.params.id)
     Workout.findByIdAndUpdate(req.params.id, {
-        $push:{exercises: req.body}
+        $push: { exercises: req.body }
 
     }).then(
-        (err, workouts) => {
-            if (err)
-                console.log(err);
+        (workouts) => {
             res.json(workouts)
         });
 });
 
 
-// GET /api/workouts/range (Last 7 days: Limit (7))
-// app.get("/api/workouts/range", (req, res) => {
-// db.Workout.find({}, (err, data) => {
-//     if(err)
-//     console.log(err);
-//     res.json(data)
-// });
-// });
+// GET /api/workouts/range 
+app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({
+
+    }).then(
+
+        (workouts) => {
+
+            res.json(workouts)
+        });
+});
 
 //HTML Routes
 app.get("/", (req, res) => {
