@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const logger = require("morgan");
 const Workout = require("./models/workout");
+const { db } = require("./models/workout");
 
 const app = express();
 
@@ -56,14 +57,26 @@ app.put("/api/workouts/:id", (req, res) => {
 
 
 // GET /api/workouts/range 
+
+app.post("api/workouts/range", (req, res) => {
+    db.Workout.create({})
+    .then(
+
+        (workouts) => {
+
+            res.json(workouts)
+        });
+});
 app.get("/api/workouts/range", (req, res) => {
-    db.Workout.find({
+    Workout.find({
 
     }).then(
 
         (workouts) => {
 
             res.json(workouts)
+        }).catch((err) => {
+            res.json(err)
         });
 });
 
