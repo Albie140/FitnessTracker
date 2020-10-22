@@ -11,9 +11,6 @@ app.use(logger("dev"));
 
 const PORT = process.env.PORT || 5082
 
-
-
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -49,6 +46,7 @@ app.post("/api/workouts", (req, res) => {
             res.json(workouts)
         });
 });
+
 // PUT /api/workouts/:id
 app.put("/api/workouts/:id", (req, res) => {
     Workout.findByIdAndUpdate(req.params.id, {
@@ -61,7 +59,7 @@ app.put("/api/workouts/:id", (req, res) => {
 });
 
 
-// GET /api/workouts/range 
+// POST & GET /api/workouts/range 
 
 app.post("api/workouts/range", (req, res) => {
     Workout.create({})
@@ -97,7 +95,7 @@ app.get("/stats", (req, res) => {
     res.sendFile(path.join(__dirname, "public/stats.html"))
 });
 
-
+// Connecting to db
 app.listen(PORT, () => {
     console.log(`App is running on http://localhost:${PORT}`);
 });
