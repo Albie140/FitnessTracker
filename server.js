@@ -59,13 +59,13 @@ app.put("/api/workouts/:id", (req, res) => {
 // GET /api/workouts/range 
 
 app.post("api/workouts/range", (req, res) => {
-    db.Workout.create({})
-    .then(
+    Workout.create({})
+        .then(
 
-        (workouts) => {
+            (workouts) => {
 
-            res.json(workouts)
-        });
+                res.json(workouts)
+            });
 });
 app.get("/api/workouts/range", (req, res) => {
     Workout.find({
@@ -73,8 +73,9 @@ app.get("/api/workouts/range", (req, res) => {
     }).then(
 
         (workouts) => {
+            console.log(workouts);
+            res.json(workouts);
 
-            res.json(workouts)
         }).catch((err) => {
             res.json(err)
         });
